@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMemo } from './memoSlice';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import {Home, Select, Send, Success} from './pages'
+
 const IndexPage = () => {
   const dispatch = useDispatch();
   const memo = useSelector((state) => state.memo);
@@ -23,6 +25,9 @@ const IndexPage = () => {
       </Button>
       <Button variant="contained" color="secondary">
         設定
+      </Button>
+      <Button component={Link} to="/home" variant="contained" color="primary">
+        home
       </Button>
     </Container>
   );
@@ -48,6 +53,10 @@ const App = () => {
           <Route path="/index" element={<IndexPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/" element={<IndexPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/select" element={<Select />} />
+          <Route path="/send/:id" element={<Send />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </Router>
     </Provider>
