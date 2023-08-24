@@ -107,6 +107,7 @@ const Send = () => {
         <TextField
           label="メッセージ（任意）"
           value={message}
+          type="text"
           onChange={(event) => setMessage(event.target.value)}
         />
         <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error}>
