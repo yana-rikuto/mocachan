@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Avatar, Grid, Button, Box } from '@mui/material';
+import { Avatar, Grid, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; 
 
 const Home = () => {
@@ -56,10 +56,18 @@ const Home = () => {
         justifyContent="center"
         sx={{paddingTop: '40px'}}
       >
-        <Button sx={{width:screen.width, height:50}} variant="contained" color="primary" onClick={() => navigate('/select')}>
+        <Button sx={{width:screen.width, height:50}} variant="contained" color="primary" onClick={() => navigate('/select')}
+        disabled={user?.flag === 1}>
           送金する
         </Button>
       </Box>
+      
+      {user?.flag === 1 && ( // flagが1の場合、メッセージを表示
+        <Typography align="center" variant="body1" color="error">
+          口座が凍結しているため送金できません
+        </Typography>
+      )}
+
     </>
   )
 }
