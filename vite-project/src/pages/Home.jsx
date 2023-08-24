@@ -56,13 +56,17 @@ const Home = () => {
         justifyContent="center"
         sx={{paddingTop: '40px'}}
       >
-        <Button sx={{width:screen.width, height:50}} variant="contained" color="primary" onClick={() => navigate('/select')}
-        disabled={user?.flag === 1}>
+        <Button
+          sx={{width:screen.width, height:50}}
+          variant="contained" color="primary"
+          onClick={() => navigate('/select')}
+          disabled={!user.active}
+        >
           送金する
         </Button>
       </Box>
       
-      {user?.flag === 1 && ( // flagが1の場合、メッセージを表示
+      {!user.active && ( // flagが1の場合、メッセージを表示
         <Typography align="center" variant="body1" color="error">
           口座が凍結しているため送金できません
         </Typography>

@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Avatar, Grid, Button, TextField, Stack } from '@mui/material';
+import { Avatar, Grid, Button, TextField, Stack, Typography } from '@mui/material';
 
 const Send = () => {
   const {id} = useParams();
@@ -113,9 +113,14 @@ const Send = () => {
           type="text"
           onChange={(event) => setMessage(event.target.value)}
         />
-        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error}>
+        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error || !user.active}>
           送金する
         </Button>
+        {!user.active && ( // flagが1の場合、メッセージを表示
+          <Typography align="center" variant="body1" color="error">
+            口座が凍結しているため送金できません
+          </Typography>
+        )}
       </Stack>
     </>
   )
