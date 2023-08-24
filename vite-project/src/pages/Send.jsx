@@ -15,9 +15,9 @@ const Send = () => {
     const inputValue = event.target.value;
     setAmount(inputValue);
 
-    if (inputValue > user?.money || inputValue < 0) {
+    if (inputValue > user?.money || inputValue <= 0) {
       setError(true);
-      setHelperText('送金額が上限を超えているか、0未満です。');
+      setHelperText('送金額が上限を超えているか、0以下です。');
     } else {
       setError(false);
       setHelperText('');
