@@ -85,7 +85,7 @@ const Send = () => {
           <p style={{paddingTop: '20px', fontSize: '24px'}}>{dstUser?.name}</p>
         </Grid>
       </Grid>
-      <p style={{fontSize: '10px', paddingLeft: '20px'}}>口座番号: {dstUser?.account_number} </p>
+      {/* <p style={{fontSize: '20px', paddingLeft: '20px'}}>口座番号: {dstUser?.account_number} </p> */}
       <p style={{textAlign: 'center'}}>送金上限額：{user?.money}円</p>
       <Stack spacing={3} sx={{ paddingX: "20px", paddingTop: "10px"}}>
         <TextField

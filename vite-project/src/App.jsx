@@ -38,6 +38,7 @@ const HistoryPage = () => {
   return (
     <Container>
       <h1>履歴画面</h1>
+      <p>ユーザー名変更</p>
       <TextField label="MEMO" variant="outlined" value={memo} onChange={(e) => dispatch(setMemo(e.target.value))} />
       <Button component={Link} to="/index" variant="contained" color="primary">
         戻る
