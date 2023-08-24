@@ -8,6 +8,21 @@ const Send = () => {
   const [user, setUser] = useState({});
   const [dstUser, setDstUser] = useState({});
   const [amount, setAmount] = useState('')
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('');
+
+  const handleAmountChange = (event) => {
+    const inputValue = event.target.value;
+    setAmount(inputValue);
+
+    if (inputValue > user?.money || inputValue < 0) {
+      setError(true);
+      setHelperText('送金額が上限を超えているか、0未満です。');
+    } else {
+      setError(false);
+      setHelperText('');
+    }
+  };
 
   const hundleSubmit = async () => {
     const url = 'http://localhost:3000/remittance_histories';
@@ -78,9 +93,11 @@ const Send = () => {
           label="送金額"
           type="number"
           value={amount}
-          onChange={(event) => setAmount(event.target.value)}
+          onChange={handleAmountChange}
+          error={error}
+          helperText={helperText}
         />
-        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount}>
+        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error}>
           送金する
         </Button>
       </Stack>
