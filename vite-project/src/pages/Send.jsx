@@ -8,6 +8,8 @@ const Send = () => {
   const [user, setUser] = useState({});
   const [dstUser, setDstUser] = useState({});
   const [amount, setAmount] = useState('')
+  const [message, setMessage] = useState(''); 
+
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState('');
 
@@ -33,7 +35,8 @@ const Send = () => {
     const data = {
       src_id: user.id,
       dst_id: dstUser.id,
-      amount: Number(amount)
+      amount: Number(amount),
+      message: message
     };
     try {
       const response = await fetch(url, {
@@ -100,6 +103,12 @@ const Send = () => {
           onChange={handleAmountChange}
           error={error}
           helperText={helperText}
+        />
+        <TextField
+          label="メッセージ（任意）"
+          value={message}
+          type="text"
+          onChange={(event) => setMessage(event.target.value)}
         />
         <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error}>
           送金する
