@@ -17,10 +17,14 @@ const Home = () => {
         console.error('Error fetching user data:', error);
       }
     }
-
+  
     fetchFirstUser();
   },[])
 
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ }
+ 
   return (
     <>
       <Grid container spacing={2} sx={{paddingTop: '100px'}}>
@@ -33,7 +37,7 @@ const Home = () => {
       </Grid>
       <p style={{fontSize: '10px', paddingLeft: '20px'}}>口座番号: {user?.account_number} </p>
       <p style={{textAlign: 'center'}}>預金残高</p>
-      <p style={{backgroundColor: '#f5f5f5', textAlign: 'right', marginLeft: '20px', marginRight: '20px'}}>{user?.money}</p>
+      <p style={{backgroundColor: '#f5f5f5', textAlign: 'right', marginLeft: '20px', marginRight: '20px'}}>{numberWithCommas(10000 || 0)}</p>
       <Box
         display="flex"
         justifyContent="center"
