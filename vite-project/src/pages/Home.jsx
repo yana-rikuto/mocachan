@@ -35,7 +35,7 @@ const Home = () => {
           <p style={{paddingTop: '20px', fontSize: '24px'}}>{user?.name}</p>
         </Grid>
       </Grid>
-      <p style={{fontSize: '10px', paddingLeft: '20px'}}>口座番号: {user?.account_number} </p>
+      <p style={{fontSize: '20px', paddingLeft: '20px'}}>口座番号: {user?.account_number} </p>
       <p style={{textAlign: 'center'}}>預金残高</p>
       <p style={{backgroundColor: '#f5f5f5', textAlign: 'right', marginLeft: '20px', marginRight: '20px'}}>{numberWithCommas(user?.money || 0)}</p>
       <Box
@@ -43,7 +43,7 @@ const Home = () => {
         justifyContent="center"
         sx={{paddingTop: '40px'}}
       >
-        <Button variant="contained" color="primary" onClick={() => navigate('/select')}>
+        <Button sx={{width:screen.width, height:50}} variant="contained" color="primary" onClick={() => navigate('/select')}>
           送金する
         </Button>
       </Box>
