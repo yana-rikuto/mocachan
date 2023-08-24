@@ -17,9 +17,12 @@ const Send = () => {
     const inputValue = event.target.value;
     setAmount(inputValue);
 
-    if (inputValue > user?.money || inputValue <= 0) {
+    if (inputValue <= 0) {
       setError(true);
-      setHelperText('送金額が上限を超えているか、0以下です。');
+      setHelperText('不正な入力です');
+    } else if (inputValue > user?.money || inputValue > 100000) {
+      setError(true);
+      setHelperText('送金額が上限を超えています。');
     } else {
       setError(false);
       setHelperText('');

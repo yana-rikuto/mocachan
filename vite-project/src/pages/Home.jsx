@@ -37,7 +37,20 @@ const Home = () => {
       </Grid>
       <p style={{fontSize: '20px', paddingLeft: '20px'}}>口座番号: {user?.account_number} </p>
       <p style={{textAlign: 'center'}}>預金残高</p>
-      <p style={{backgroundColor: '#f5f5f5', textAlign: 'right', marginLeft: '20px', marginRight: '20px'}}>{numberWithCommas(user?.money || 0)}</p>
+      <p style={{
+                backgroundColor: 'white',
+                border: '2px solid #ccc',
+                textAlign: 'right',
+                marginLeft: '20px',
+                marginRight: '20px',
+                padding: '10px',
+                fontSize: '1.5em',
+                borderRadius: '10px'
+                }}>
+  {numberWithCommas(user?.money || 0)}円
+</p>
+
+
       <Box
         display="flex"
         justifyContent="center"
