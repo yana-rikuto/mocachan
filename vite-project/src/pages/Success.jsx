@@ -12,7 +12,13 @@ const iconStyle = {
 const Success = () => {
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh' 
+    }}>
       <CheckCircleOutlineIcon style={iconStyle} />
       <p>送金処理が完了しました</p>
       <Button component={Link} to="/home" variant="contained" color="primary">
