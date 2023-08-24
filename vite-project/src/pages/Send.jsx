@@ -24,6 +24,10 @@ const Send = () => {
     }
   };
 
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ }
+
   const hundleSubmit = async () => {
     const url = 'http://localhost:3000/remittance_histories';
     const data = {
@@ -86,7 +90,7 @@ const Send = () => {
         </Grid>
       </Grid>
       {/* <p style={{fontSize: '20px', paddingLeft: '20px'}}>口座番号: {dstUser?.account_number} </p> */}
-      <p style={{textAlign: 'center'}}>送金上限額：{user?.money}円</p>
+      <p style={{textAlign: 'center'}}>送金上限額：{numberWithCommas(user?.money || 0)}円</p>
       <Stack spacing={3} sx={{ paddingX: "20px", paddingTop: "10px"}}>
         <TextField
           required
