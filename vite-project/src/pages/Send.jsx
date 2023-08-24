@@ -10,6 +10,25 @@ const Send = () => {
   const [amount, setAmount] = useState('')
   const [message, setMessage] = useState(''); 
 
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('');
+
+  const handleAmountChange = (event) => {
+    const inputValue = event.target.value;
+    setAmount(inputValue);
+
+    if (inputValue > user?.money || inputValue <= 0) {
+      setError(true);
+      setHelperText('送金額が上限を超えているか、0以下です。');
+    } else {
+      setError(false);
+      setHelperText('');
+    }
+  };
+
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+ }
 
   const hundleSubmit = async () => {
     const url = 'http://localhost:3000/remittance_histories';
@@ -74,21 +93,23 @@ const Send = () => {
         </Grid>
       </Grid>
       <p style={{fontSize: '10px', paddingLeft: '20px'}}>口座番号: {dstUser?.account_number} </p>
-      <p style={{textAlign: 'center'}}>送金上限額：{user?.money}円</p>
+      <p style={{textAlign: 'center'}}>送金上限額：{numberWithCommas(user?.money || 0)}円</p>
       <Stack spacing={3} sx={{ paddingX: "20px", paddingTop: "10px"}}>
         <TextField
           required
           label="送金額"
           type="number"
           value={amount}
-          onChange={(event) => setAmount(event.target.value)}
+          onChange={handleAmountChange}
+          error={error}
+          helperText={helperText}
         />
         <TextField
           label="メッセージ（任意）"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
-        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount}>
+        <Button variant="contained" color="primary" onClick={hundleSubmit} disabled={!amount || error}>
           送金する
         </Button>
       </Stack>
